@@ -441,8 +441,8 @@ figure:hover+span {
 
 .about_info{
     display: flex;
-    justify-content: space-evenly;
-    margin-bottom: var(--mb-2-5);
+    justify-content: space-between;
+    margin-bottom: var(--mb-1-5);
 }
 
 .about_buttons{
@@ -458,10 +458,28 @@ figure:hover+span {
     margin-bottom: var(--mb-1-5);
 }
 
-.programming_logo:hover {
-    position: relative; 
-    top: -5px;
-    transition: 0.3s;
+.big_box {
+    position: relative;
+    padding: 10px 25px;
+    margin: 0px 10px 10px 0px;
+    float: left;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #FFF;
+     text-decoration: none;
+    background-color: #e1e2e3;
+    border: none;
+    border-bottom: 5px solid black;
+    text-shadow: 0px -2px black;
+    -webkit-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+.big_box:hover, .big_box:active {
+    -webkit-transform: translate(0px,5px);
+    -ms-transform: translate(0px,5px);
+    transform: translate(0px,5px);
+    border-bottom: 1px solid black;
 }
 
 .special_button {
@@ -495,122 +513,7 @@ figure:hover+span {
     left: 0px;
 }
 
-/* SKILLS */
-.skills_container{
-    row-gap: 0;
-}
-
-.skills_header{
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--mb-2-5);
-    cursor: pointer;
-}
-
-.skills_icon,
-.skills_arrow{
-    font-size: 2rem;
-    color: var(--first-color);
-}
-
-.skills_icon{
-    margin-right: var(--mb-0-75);
-}
-
-.skills_title{
-    font-size: var(--h3-font-size);
-}
-
-.skills_subtitle{
-    font-size: var(--small-font-size);
-    color: var(--text-color-light);
-}
-
-.skills_arrow{
-    margin-left: auto;
-    transition: .4s;
-}
-
-.skills_list{
-    row-gap: 1.5rem;
-    padding-left: 2.7rem;
-}
-
-.skills_titles{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--mb-0-5);
-}
-
-.skills_name{
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-medium);
-}
-
-.skills_bar,
-.skills_percentage{
-    height: 5px;
-    border-radius: .25rem;
-}
-
-.skills_bar{
-    background-color: var(--hover-color);
-}
-
-.skills_percentage{
-    display: block;
-    background-color: var(--first-color);
-}
-
-.skills_kotlin{
-    width: 50%;
-}
-.skills_flutter{
-    width: 40%;
-}
-.skills_androidstudio{
-    width: 70%;
-}
-.skills_java{
-    width: 60%;
-}
-
-
-.skills_python{
-    width: 60%;
-}
-
-.skills_firebase{
-    width: 30%;
-}
-
-.skills_c{
-    width: 10%;
-}
-
-.skills_cpp{
-    width: 10%;
-}
-
-.skills_haskell{
-    width: 10%;
-}
-
-.skills_close .skills_list{
-    height: 0;
-    overflow: hidden;
-}
-
-.skills_open .skills_list{
-    height: max-content;
-    margin-bottom: var(--mb-2-5);
-}
-
-.skills_open .skills_arrow{
-    transform: rotate(-180deg);
-}
-
-/* education */
+/* Education */
 .education_title {
     display: inline-block;
     position: relative;
@@ -667,7 +570,7 @@ figure:hover+span {
     clear: both;
     width: 100%;
     font-size: var(--small-font-size);
-    margin-bottom: var(--mb-1);
+    margin-bottom: var(--mb-0-5);
 }
 
 .education_calendar{
@@ -943,9 +846,6 @@ figure:hover+span {
         width: 180px;
     }
 
-    .skills_title {
-        font-size: var(--normal-font-size);
-    }
     .education_data {
         gap: .5rem;
     }
@@ -997,7 +897,6 @@ figure:hover+span {
     }
 
     /* .about_container, */
-    .skills_container,
     .portfolio_content,
     .project_container,
     .contact_container,
@@ -1084,7 +983,7 @@ figure:hover+span {
             text-align: initial;
         }
         .about_info {
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
         .about_buttons {
             justify-content: initial;

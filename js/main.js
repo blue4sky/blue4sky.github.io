@@ -122,3 +122,28 @@ function scrollUp(){
     if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
 }
 window.addEventListener('scroll', scrollUp)
+
+/* Clickable Logo */
+document.getElementById('flutter_logo').addEventListener('click', function() {
+    location.href = "https://flutter.dev/"
+}, false);
+
+document.getElementById('kotlin_logo').addEventListener('click', function() {
+    location.href = "https://kotlinlang.org/"
+}, false);
+
+document.getElementById('python_logo').addEventListener('click', function() {
+    location.href = "https://www.python.org/"
+}, false);
+
+document.getElementById('java_logo').addEventListener('click', function() {
+    location.href = "https://www.java.com/en/"
+}, false);
+
+document.getElementById('firebase_logo').addEventListener('click', function() {
+    location.href = "https://firebase.google.com/"
+}, false);
+
+document.getElementById('studio_logo').addEventListener('click', function() {
+    location.href = "https://developer.android.com/studio"
+}, false);
