@@ -756,14 +756,15 @@ img{
 }
 
 .contact_label{
-    font-size: var(--smaller-font-size);
-    color: var(--title-color);
+    font-size: var(--normal-font-size);
+    color: black;
+    font-weight: 600;
 }
 
 .contact_input{
     width: 100%;
     background-color: rgb(199, 201, 201, 1);
-    color: var(--text-color);
+    color: black;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     border: none;
