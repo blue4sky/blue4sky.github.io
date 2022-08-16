@@ -108,6 +108,15 @@ img{
     height: auto;
 }
 
+figure {
+    background: #fff;
+    overflow: hidden;
+}
+figure:hover+span {
+    bottom: -36px;
+    opacity: 1;
+}
+
 /* Reusable CSS Classes */
 .section{
     padding: 2rem 0 4rem;
@@ -382,6 +391,18 @@ img{
 .ucl_link:hover:after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+
+.home_img figure img{
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.home_img figure:hover img {
+    -webkit-filter: blur(0);
+    filter: blur(0);
 }
 
 /* BUTTONS */
@@ -801,7 +822,7 @@ img{
 }
 
 .footer_bg{
-    background-color: black;
+    background-color: var(--first-color);
     padding: 2rem 0 3rem;
 }
 
@@ -839,8 +860,8 @@ img{
     font-size: var(--normal-font-size);
     text-align: center;
     color: white;
-    margin-top: 5rem;
-    margin-bottom: 0;
+    margin-top: var(--mb-2-5);
+    margin-bottom: var(--mb-1);
 }
 
 .footer_title,
@@ -850,7 +871,7 @@ img{
     color:white;
 }
 
-/* SCROLL UP */
+/* Scroll Up*/
 .scrollup{
     position: fixed;
     right: 1rem;
