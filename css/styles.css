@@ -187,7 +187,7 @@ figure:hover+span {
     color: var(--hover-color);
 }
 
-@media screen and (max-width: 767px){
+/* @media screen and (max-width: 767px){
     .nav_menu{
         position: fixed;
         bottom: -100%;
@@ -198,6 +198,12 @@ figure:hover+span {
         box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
         border-radius: 1.5rem 1.5rem 0 0;
         transition: .3s;
+    }
+} */
+
+@media (max-width: 767px) {
+    .header {
+        display: none;
     }
 }
 
@@ -758,6 +764,7 @@ figure:hover+span {
 
 .footer_container{
     row-gap: 3.5rem;
+    justify-content: center;
 }
 
 .footer_bg{
@@ -799,8 +806,8 @@ figure:hover+span {
     font-size: var(--normal-font-size);
     text-align: center;
     color: white;
-    margin-top: var(--mb-2-5);
-    margin-bottom: var(--mb-1);
+    margin-top: 2.25rem;
+    margin-bottom: -1.5rem;
 }
 
 .footer_title,
