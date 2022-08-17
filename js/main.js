@@ -73,7 +73,7 @@ tabs.forEach(tab => {
 /*==================== PROJECTS SWIPER  ====================*/
 let swiper = new Swiper('.projects_container', {
     cssMode: true,
-    loop: true,
+    loop: false,
 
     navigation: {
       nextEl: ".swiper-button-next",

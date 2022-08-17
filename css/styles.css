@@ -130,7 +130,7 @@ figure:hover+span {
 .section_subtitle{
     display: block;
     font-size: var(--small-font-size);
-    margin-bottom: var(--mb-3);
+    margin-bottom: var(--mb-1);
 }
 
 .section_title,
@@ -603,9 +603,26 @@ figure:hover+span {
 }
 
 .projects_img{
-    width: 265px;
+    width: 300px;
     border-radius: .5rem;
     justify-self: center;
+}
+
+.projects_img:hover {
+    transform: translateY(4px);
+    transition: 0.3s;
+}
+
+.project_icon {
+    margin-left: var(--mb-0-5);
+    color: black;
+    font-size: 2rem;
+}
+
+.project_icon:hover {
+    color: var(--hover-color);
+    transform: translateY(4px);
+    transition: 0.3s;
 }
 
 .projects_title{
@@ -619,6 +636,17 @@ figure:hover+span {
 
 .projects_button:hover .button_icon{
     transform: translateX(.25rem);
+}
+
+.used_tools {
+    font-size: 12px;
+    justify-content: center;
+    display: inline-block;
+    background-color: var(--first-color);
+    color: white;
+    padding: 7.5px;
+    border-radius: 10px;
+    font-weight: 400;
 }
 
 .swiper-button-prev::after,
@@ -923,7 +951,7 @@ figure:hover+span {
             padding: 6rem 0 2rem;
         }
         .section_subtitle {
-            margin-bottom: 4rem;
+            margin-bottom: var(--mb-2);
         }
         .header {
             top: 0;
@@ -985,7 +1013,7 @@ figure:hover+span {
         .about_info {
             justify-content: space-evenly;
         }
-        .about_buttons {
+        .used_tools {
             justify-content: initial;
         }
 
