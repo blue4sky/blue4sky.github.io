@@ -424,10 +424,18 @@ figure:hover+span {
 
 /* About */
 
-.about_description{
+.about_description1{
+    display: inline-block;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: var(--mb-1);
+}
+
+.about_description2{
     display: flex;
-    text-align: center;
-    margin-bottom: var(--mb-2-5);
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: var(--mb-2);
 }
 
 .about_info{
@@ -999,8 +1007,10 @@ figure:hover+span {
             column-gap: 5rem; 
         }
         
-        .about_description {
-            text-align: initial;
+        .about_description1, .about_description2 {
+            display: inline-block;
+            text-align: justify;
+            text-justify: inter-word;
         }
         .about_info {
             justify-content: space-evenly;
