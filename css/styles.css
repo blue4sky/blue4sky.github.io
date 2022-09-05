@@ -631,6 +631,8 @@ figure:hover+span {
 
 .projects_description{
     margin-bottom: var(--mb-0-75);
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .projects_button:hover .button_icon{
