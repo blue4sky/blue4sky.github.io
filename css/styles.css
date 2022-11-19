@@ -646,6 +646,7 @@ figure:hover+span {
     background-color: var(--first-color);
     color: white;
     padding: 7.5px;
+    margin-top: 2px;
     border-radius: 10px;
     font-weight: 400;
 }
