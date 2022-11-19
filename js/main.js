@@ -147,3 +147,15 @@ document.getElementById('firebase_logo').addEventListener('click', function() {
 document.getElementById('studio_logo').addEventListener('click', function() {
     location.href = "https://developer.android.com/studio"
 }, false);
+
+document.getElementById('figma_logo').addEventListener('click', function() {
+    location.href = "https://figma.com"
+}, false);
+
+document.getElementById('react_logo').addEventListener('click', function() {
+    location.href = "https://reactjs.org/"
+}, false);
+
+document.getElementById('javascript_logo').addEventListener('click', function() {
+    location.href = "https://www.javascript.com/"
+}, false);
