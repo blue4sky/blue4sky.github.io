@@ -26,6 +26,7 @@
     --field: rgba(118, 118, 128, .07);
     --field-border: rgba(20, 30, 60, .08);
     --dot: rgba(20, 30, 60, .17);
+    --deck-card: rgba(255, 255, 255, .9);
 
     /* Type */
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -64,6 +65,7 @@
     --field: rgba(255, 255, 255, .06);
     --field-border: rgba(255, 255, 255, .08);
     --dot: rgba(255, 255, 255, .15);
+    --deck-card: rgba(30, 30, 34, .92);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,6 +92,7 @@
         --field: rgba(255, 255, 255, .06);
         --field-border: rgba(255, 255, 255, .08);
         --dot: rgba(255, 255, 255, .15);
+    --deck-card: rgba(30, 30, 34, .92);
     }
 }
 
@@ -102,7 +105,9 @@
     padding: 0;
 }
 
+/* Clip sideways overflow (e.g. the fanned project cards) so the page never pans horizontally */
 html {
+    overflow-x: clip;
     scroll-behavior: smooth;
     scroll-padding-top: 96px;
     -webkit-text-size-adjust: 100%;
@@ -118,6 +123,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    overflow-x: clip;
     transition: background-color .5s var(--ease), color .5s var(--ease);
 }
 
@@ -957,49 +963,78 @@ main {
 }
 
 /*==================== PROJECTS ====================*/
-.section-wide {
-    max-width: none;
-    margin-inline: calc(var(--gutter) * -1);
-}
-
-.section-wide .section_header {
-    padding-inline: var(--gutter);
-}
-
-.carousel_track {
-    position: relative;
-    --card-w: min(420px, 82vw);
+/* The cards share one grid cell, so the deck is as tall as its tallest card */
+.deck {
+    --fan: 6; /* degrees each card behind leans out */
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: var(--card-w);
-    gap: 20px;
-    padding: 12px max(var(--gutter), calc((100vw - var(--content)) / 2)) 32px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: max(var(--gutter), calc((100vw - var(--content)) / 2));
-    scrollbar-width: none;
+    width: min(100%, 440px);
+    margin: 36px auto 0;
+    padding-bottom: 52px;
+    outline: none;
 }
 
-.carousel_track::-webkit-scrollbar {
-    display: none;
+/* Spread the fan a little when hovering, like fanning a hand of cards */
+@media (hover: hover) {
+    .deck:hover {
+        --fan: 8;
+    }
 }
 
-.carousel_track:focus-visible {
-    outline-offset: -4px;
-    border-radius: var(--radius-lg);
+.deck:focus-visible .project.is-front {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 
+/* --depth (set from JS): 0 is the front card, 1-2 fan out behind it, 3 waits hidden at the back.
+   --tilt (set from JS): which way a card behind leans, 1 for right and -1 for left.
+   --pull (set on the deck while dragging) straightens the cards behind and draws them forward. */
 .project {
+    --d: max(calc(var(--depth, 0) - var(--pull, 0)), 0);
+    --lean: min(var(--d), 1);
+    grid-area: 1 / 1;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    scroll-snap-align: start;
-    transition: transform .5s var(--spring), background-color .5s var(--ease), box-shadow .5s var(--ease);
+    background: var(--deck-card);
+    transform-origin: 50% 100%;
+    transform:
+        translateY(calc(var(--d) * 6px))
+        rotate(calc(var(--tilt, 0) * var(--lean) * var(--fan) * 1deg))
+        scale(calc(1 - var(--d) * .04));
+    transition: transform .55s var(--spring), opacity .4s var(--ease), background-color .5s var(--ease), box-shadow .5s var(--ease);
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-.project:hover {
-    transform: translateY(-4px);
+.project > * {
+    transition: opacity .4s var(--ease);
+}
+
+.project:not(.is-front) > * {
+    opacity: .5;
+}
+
+.project.is-front {
+    cursor: grab;
+}
+
+.project.is-front:active {
+    cursor: grabbing;
+}
+
+.project.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* While dragging, the cards behind follow the pointer exactly */
+.deck.is-dragging .project {
+    transition: none;
+}
+
+.project img {
+    -webkit-user-drag: none;
 }
 
 .project_media {
@@ -1021,7 +1056,7 @@ main {
     object-fit: contain;
 }
 
-.project:hover .project_media img {
+.project.is-front:hover .project_media img {
     transform: scale(1.04);
 }
 
@@ -1107,12 +1142,6 @@ main {
     border-radius: 50%;
     font-size: 1.6rem;
     background: var(--glass-fill-strong);
-}
-
-.carousel_button:disabled {
-    opacity: .4;
-    cursor: default;
-    transform: none;
 }
 
 /* iOS-style page control: one dot per reachable scroll position */
@@ -1359,6 +1388,13 @@ main {
     .tech_grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 14px 4px;
+    }
+
+    /* Narrower so the fanned cards still peek out within the screen */
+    .deck {
+        --fan: 5;
+        width: calc(100% - 36px);
+        margin-top: 24px;
     }
 }
 

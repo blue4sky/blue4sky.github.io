@@ -162,77 +162,152 @@ window.addEventListener('resize', updateTimeline)
 updateTimeline()
 setTimeout(updateTimeline, 1000)
 
-/*==================== PROJECTS CAROUSEL ====================*/
-const track = document.getElementById('project-track')
-const projects = [...track.querySelectorAll('.project')]
+/*==================== PROJECTS DECK ====================*/
+const deck = document.getElementById('project-deck')
+const cards = [...deck.querySelectorAll('.project')]
 const prevButton = document.getElementById('project-prev')
 const nextButton = document.getElementById('project-next')
 const dotsContainer = document.getElementById('project-dots')
-let stops = []
-let dots = []
+const flyDuration = reduceMotion.matches ? 0 : 450
+let current = 0
+let busy = false
 
-// Scroll positions the track can actually reach. When several cards fit on screen,
-// the last few share the final position, so there are fewer stops than projects.
-function computeStops() {
-    const padding = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0
-    const maxScroll = track.scrollWidth - track.clientWidth
-    stops = []
-    projects.forEach(project => {
-        const stop = Math.min(Math.max(project.offsetLeft - padding, 0), maxScroll)
-        if (!stops.length || stop - stops[stops.length - 1] > 8) stops.push(stop)
+const dots = cards.map((_, i) => {
+    const dot = document.createElement('button')
+    dot.type = 'button'
+    dot.className = 'carousel_dot'
+    dot.setAttribute('aria-label', `Show project ${i + 1} of ${cards.length}`)
+    dot.addEventListener('click', () => {
+        if (busy) return
+        current = i
+        layoutDeck()
     })
+    return dot
+})
+dotsContainer.replaceChildren(...dots)
 
-    dotsContainer.replaceChildren(...stops.map((_, i) => {
-        const dot = document.createElement('button')
-        dot.type = 'button'
-        dot.className = 'carousel_dot'
-        dot.setAttribute('aria-label', `Go to position ${i + 1} of ${stops.length}`)
-        dot.addEventListener('click', () => goToStop(i))
-        return dot
-    }))
-    dots = [...dotsContainer.children]
-    updateCarousel()
-}
-
-function currentStop() {
-    let closest = 0
-    stops.forEach((stop, i) => {
-        if (Math.abs(stop - track.scrollLeft) < Math.abs(stops[closest] - track.scrollLeft)) closest = i
+// Each card's place in the stack: 0 is the front, 1-2 peek out behind it, the rest wait hidden at the back
+function layoutDeck() {
+    cards.forEach((card, i) => {
+        const depth = (i - current + cards.length) % cards.length
+        card.style.setProperty('--depth', Math.min(depth, 3))
+        card.style.setProperty('--tilt', depth === 0 ? 0 : depth % 2 ? 1 : -1)
+        card.style.zIndex = cards.length - depth
+        card.classList.toggle('is-front', depth === 0)
+        card.classList.toggle('is-hidden', depth > 2)
+        card.inert = depth !== 0
     })
-    return closest
-}
-
-function updateCarousel() {
-    const index = currentStop()
     dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === index)
-        dot.setAttribute('aria-current', i === index)
+        dot.classList.toggle('is-active', i === current)
+        dot.setAttribute('aria-current', i === current)
     })
-    prevButton.disabled = index === 0
-    nextButton.disabled = index === stops.length - 1
 }
 
-function goToStop(index) {
-    const target = stops[Math.max(0, Math.min(stops.length - 1, index))]
-    track.scrollTo({ left: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' })
+// Throw the front card off to one side, then tuck it in at the back of the deck
+function nextCard(direction = -1) {
+    if (busy) return
+    busy = true
+    const card = cards[current]
+    current = (current + 1) % cards.length
+    layoutDeck()
+
+    card.style.zIndex = cards.length + 1
+    card.style.transition = `transform ${flyDuration}ms var(--ease), opacity ${flyDuration}ms var(--ease)`
+    card.style.transform = `translateX(${direction * 130}%) rotate(${direction * 16}deg)`
+    card.style.opacity = '0'
+
+    setTimeout(() => {
+        card.style.transition = 'none'
+        card.style.transform = ''
+        card.style.opacity = ''
+        layoutDeck()
+        card.offsetHeight // commit the jump to the back before transitions return
+        card.style.transition = ''
+        busy = false
+    }, flyDuration)
 }
 
-prevButton.addEventListener('click', () => goToStop(currentStop() - 1))
-nextButton.addEventListener('click', () => goToStop(currentStop() + 1))
+// Bring the previous card back in from the side onto the front of the deck
+function previousCard() {
+    if (busy) return
+    busy = true
+    current = (current - 1 + cards.length) % cards.length
+    const card = cards[current]
 
-track.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); goToStop(currentStop() + 1) }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goToStop(currentStop() - 1) }
+    card.style.transition = 'none'
+    card.style.transform = 'translateX(-130%) rotate(-16deg)'
+    card.style.opacity = '0'
+    layoutDeck()
+    card.offsetHeight // start from off to the side
+    card.style.transition = ''
+    card.style.transform = ''
+    card.style.opacity = ''
+
+    setTimeout(() => { busy = false }, flyDuration)
+}
+
+prevButton.addEventListener('click', previousCard)
+nextButton.addEventListener('click', () => nextCard(-1))
+
+deck.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); nextCard(-1) }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); previousCard() }
 })
 
-let trackTicking = false
-track.addEventListener('scroll', () => {
-    if (trackTicking) return
-    trackTicking = true
-    requestAnimationFrame(() => { updateCarousel(); trackTicking = false })
-}, { passive: true })
-window.addEventListener('resize', computeStops)
-computeStops()
+// Drag the front card; let go far enough to the side and it flies off
+let drag = null
+let suppressClick = false
+
+deck.addEventListener('pointerdown', e => {
+    const card = cards[current]
+    if (busy || e.button !== 0 || !card.contains(e.target)) return
+    drag = { card, id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, active: false }
+})
+
+window.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return
+    const dx = e.clientX - drag.x
+    const dy = e.clientY - drag.y
+    if (!drag.active) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+        // Mostly vertical movement is a page scroll, not a swipe
+        if (Math.abs(dy) > Math.abs(dx)) { drag = null; return }
+        drag.active = true
+        deck.classList.add('is-dragging')
+        drag.card.style.transition = 'none'
+    }
+    drag.dx = dx
+    drag.card.style.transform = `translateX(${dx}px) rotate(${dx * 0.05}deg)`
+    deck.style.setProperty('--pull', Math.min(Math.abs(dx) / 200, 1))
+})
+
+function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id) return
+    const { card, dx, active } = drag
+    drag = null
+    if (!active) return
+
+    deck.classList.remove('is-dragging')
+    deck.style.setProperty('--pull', 0)
+    card.style.transition = ''
+    // A drag that ends over a link shouldn't also open it
+    suppressClick = true
+    setTimeout(() => { suppressClick = false })
+
+    if (Math.abs(dx) > 100) nextCard(Math.sign(dx))
+    else card.style.transform = ''
+}
+
+window.addEventListener('pointerup', endDrag)
+window.addEventListener('pointercancel', endDrag)
+deck.addEventListener('dragstart', e => e.preventDefault())
+deck.addEventListener('click', e => {
+    if (!suppressClick) return
+    e.preventDefault()
+    e.stopPropagation()
+}, true)
+
+layoutDeck()
 
 /*==================== REVEAL ON SCROLL ====================*/
 const revealItems = document.querySelectorAll('.reveal')
