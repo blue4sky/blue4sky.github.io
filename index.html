@@ -2,669 +2,551 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta name="description" content="Sultan Rifqi, Software Engineer. Portfolio, experience and projects.">
+        <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
         <!-- Thumbnail -->
-        <meta property="og:image" content="mylogo.png">
-        <meta property="og:description" content="Computer Science Student at UCL">
         <meta property="og:title" content="Sultan Rifqi">
+        <meta property="og:description" content="Software Engineer">
+        <meta property="og:image" content="https://blue4sky.github.io/mylogo.png">
+        <meta property="og:url" content="https://blue4sky.github.io/">
 
-        <!-- Unicons  -->
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        
-        <!-- Swiper Css -->
-        <link rel="stylesheet" href="css/swiper-bundle.min.css">
-        
+        <title>Sultan Rifqi</title>
+
+        <!-- Apply saved theme before first paint -->
+        <script>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add('js');
+                try {
+                    var theme = localStorage.getItem('theme');
+                    if (theme) root.dataset.theme = theme;
+                } catch (e) {}
+            })();
+        </script>
+
+        <!-- Fonts (Apple devices use SF Pro via the system stack, everyone else gets Inter) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+        <!-- Unicons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css">
+
         <!-- Css -->
         <link rel="stylesheet" href="css/styles.css">
 
         <!-- Tab Logo -->
-        <link rel="shortcut icon" type="image/x-icon" href="mylogo.png" sizes="16px" />
-
-        <!-- Devicon -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-
-        <title>Sultan Rifqi</title>
+        <link rel="icon" type="image/png" href="mylogo.png">
+        <link rel="apple-touch-icon" href="mylogo.png">
     </head>
 
     <body>
+        <!-- Dot grid behind the glass -->
+        <div class="ambient" aria-hidden="true"></div>
 
-        <!-- Header -->
-        <header class="header" id="header">
-            <nav class="nav container">
-                <a href="#">
-                    <img src="mylogo.png" width="45px" height="45px" alt="">
-                </a>
+        <!-- Refraction filter, applied only in browsers that support SVG backdrop filters (Chromium) -->
+        <svg class="sr-only" aria-hidden="true" focusable="false">
+            <filter id="liquid-refraction" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="2" seed="7" result="noise"/>
+                <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+                <feDisplacementMap in="SourceGraphic" in2="soft" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+        </svg>
 
-                <div class="nav_menu" id="nav-menu">
-                    <ul class="nav_list grid">                
-                        <li class="nav_item">
-                            <a href="#about" class="nav_link">
-                                <i class="uil uil-user-square nav_icon"></i> About
-                            </a>
-                        </li>
-                        <li class="nav_item">
-                            <a href="#qualification" class="nav_link">
-                                <i class="uil uil-graduation-cap nav_icon"></i> Qualification
-                            </a>
-                        </li>
-                        <li class="nav_item">
-                            <a href="#projects" class="nav_link">
-                                <i class="uil uil-lightbulb-alt nav_icon"></i> Projects
-                            </a>
-                        </li>
-                        <li class="nav_item">
-                            <a href="#contact" class="nav_link">
-                                <i class="uil uil-message nav_icon"></i> Contact
-                            </a>
-                        </li>
-                    </ul>
-                    <i class="uil uil-times nav_close" id="nav-close"></i> 
-                </div>
+        <!-- Navigation dock -->
+        <nav class="dock glass refract" id="dock" aria-label="Primary">
+            <span class="dock_lens" id="dock-lens" aria-hidden="true"></span>
+            <a href="#home" class="dock_link is-active" data-section="home">
+                <i class="uil uil-estate"></i><span>Home</span>
+            </a>
+            <a href="#about" class="dock_link" data-section="about">
+                <i class="uil uil-user"></i><span>About</span>
+            </a>
+            <a href="#qualification" class="dock_link" data-section="qualification">
+                <i class="uil uil-graduation-cap"></i><span>Qualification</span>
+            </a>
+            <a href="#projects" class="dock_link" data-section="projects">
+                <i class="uil uil-lightbulb-alt"></i><span>Projects</span>
+            </a>
+            <a href="#contact" class="dock_link" data-section="contact">
+                <i class="uil uil-message"></i><span>Contact</span>
+            </a>
+        </nav>
 
-                <div class="nav_toggle" id="nav-toggle">
-                    <i class="uil uil-apps"></i>
-                </div>
-            </nav>
-        </header>
+        <button class="theme_toggle glass glass-button refract" id="theme-toggle" type="button" aria-label="Switch colour theme">
+            <i class="uil uil-moon theme_icon-dark"></i>
+            <i class="uil uil-sun theme_icon-light"></i>
+        </button>
 
-        <!-- Main -->
-        <main class="main">
+        <main>
 
             <!-- Home -->
-            <section class="home section" id="home">
-                <div class="home_container container grid">
-                    <div class="home_content grid">
-                        <div class="home_social">
-                            
-                            <a href="https://www.linkedin.com/in/sultan-rifqi/" target="_blank" class="home_social-icon">
-                                <i class="uil uil-linkedin"></i>
-                            </a>
-
-                            <a href="mailto:sultanrifqi.web@gmail.com" target="_blank" class="home_social-icon">
-                                <i class="uil uil-envelope-alt"></i>
-                            </a>
-
-                            <a href="https://github.com/blue4sky" target="_blank" class="home_social-icon">
-                                <i class="uil uil-github-alt"></i>
-                            </a>
-
-                            <a href="https://www.instagram.com/sultanrifqi4/" target="_blank" class="home_social-icon">
-                                <i class="uil uil-instagram"></i>
-                            </a>
-
-                        </div>
-
-                        <div class="home_img">
-                            <figure><img src="assets/img/profilepic.png" alt="" class="home_pic"/></figure>
-                        </div>
-
-                        <div class="home_data">
-                            <h3 class="home_subtitle">Hey, I'm</h3>
-                            <h1 class="home_title">Sultan Rifqi</h1>
-                            <h3 class="home_job">Software Engineer 👨🏻‍💻</h3>
-                            <!-- <p class="home_description">Currently studying Computer Science as a final year student at <a class="ucl_link" href="https://www.ucl.ac.uk/" style="color: black; font-weight: 600;">University College London 🎓</a></p> -->
-                             <br>
-                            <a href="#contact" class="special_button">
-                                Contact Me <i class="uil uil-comment button_icon"></i>
-                            </a>
-                        </div>
+            <section class="home" id="home">
+                <div class="home_card glass reveal">
+                    <div class="home_avatar">
+                        <img src="assets/img/avatar.jpg" alt="Portrait of Sultan Rifqi" width="600" height="600">
                     </div>
-                    
-                    <!-- Not Used -->
-                    <div class="home_scroll">
-                        <a href="#about" class="home_scroll-button button--flex">
-                            <!-- <i class="uil uil-mouse-alt home_scroll-mouse"></i>
-                            <span class="home_scroll-name">Scroll down</span>
-                            <i class="uil uil-arrow-down home_scroll-arrow"></i> -->
+
+                    <p class="home_subtitle">Hey, I'm</p>
+                    <h1 class="home_title">Sultan Rifqi</h1>
+                    <p class="home_job">Software Engineer 👨🏻‍💻</p>
+
+                    <div class="home_actions">
+                        <a href="#contact" class="button button-primary">
+                            Contact Me <i class="uil uil-comment"></i>
+                        </a>
+                        <a href="#projects" class="button button-glass glass-button">
+                            View Projects <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="socials">
+                        <a href="https://www.linkedin.com/in/sultan-rifqi/" target="_blank" rel="noopener" class="social glass-button" aria-label="LinkedIn">
+                            <i class="uil uil-linkedin"></i>
+                        </a>
+                        <a href="mailto:sultanrifqi.web@gmail.com" class="social glass-button" aria-label="Email">
+                            <i class="uil uil-envelope-alt"></i>
+                        </a>
+                        <a href="https://github.com/blue4sky" target="_blank" rel="noopener" class="social glass-button" aria-label="GitHub">
+                            <i class="uil uil-github-alt"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sultanrifqi4/" target="_blank" rel="noopener" class="social glass-button" aria-label="Instagram">
+                            <i class="uil uil-instagram"></i>
                         </a>
                     </div>
                 </div>
+
+                <a href="#about" class="home_scroll" aria-label="Scroll to About">
+                    <i class="uil uil-angle-down"></i>
+                </a>
             </section>
 
             <!-- About -->
-            <section class="about section" id="about">
-                <h2 class="section_title">About Me</h2>
+            <section class="section" id="about">
+                <header class="section_header reveal">
+                    <h2 class="section_title">About Me</h2>
+                </header>
 
-                <div class="about_container container grid">
-
-                    <div class="about_data">
-                        <p class="about_description1">
-                            A hard-working computer science student with years of hands-on experience creating and testing applications 
-                            for Android <i class="devicon-android-plain colored"></i> and iOS <i class="devicon-apple-original colored"></i>.
-                            Since high school, I have made many apps starting from the simplest to the most complex one, such as integrating multiple APIs to build a functional end-to-end app that impacts users positively.
+                <div class="about_grid">
+                    <article class="about_text glass reveal">
+                        <p>
+                            A software engineer with years of hands-on experience building and shipping applications end-to-end
+                            across multiple stacks, from mobile apps for Android and iOS to cloud services and embedded devices.
+                            Since high school, I have made many apps starting from the simplest to the most complex one, such as integrating
+                            multiple APIs to build a functional end-to-end app that impacts users positively.
                         </p>
-
-                        <p class="about_description2">
-                            I have a track record of proven leadership, communication, and time management skills 
-                            when I led my high school's student council, a society and an event. 
-                            I have also participated in many olympiads in mathematics or informatics, 
+                        <p>
+                            I have a track record of proven leadership, communication, and time management skills
+                            when I led my high school's student council, a society and an event.
+                            I have also participated in many olympiads in mathematics or informatics,
                             which strengthen my critical thinking and problem-solving skills.
                         </p>
+                    </article>
 
-                        <p class="about_subtitle">
-                            Some technologies I'm working with
-                        </p>
-
-                        <div class="about_info">
-                            <div id="flutter_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="40px" width="40px"/>
+                    <article class="about_tech glass reveal">
+                        <h3 class="card_title">Tech Stack</h3>
+                        <div class="tech_groups">
+                            <div class="tech_group">
+                                <h4 class="tech_group-label">Languages</h4>
+                                <ul class="tech_grid">
+                                    <li><a class="tech" href="https://www.typescriptlang.org/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/typescript/typescript-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">TypeScript</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.python.org/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/python/python-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Python</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/csharp/csharp-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">C#</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://dart.dev/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/dart/dart-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Dart</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://kotlinlang.org/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/kotlin/kotlin-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Kotlin</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.java.com/en/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/java/java-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Java</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://isocpp.org/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/cplusplus/cplusplus-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">C++</span>
+                                    </a></li>
+                                </ul>
                             </div>
-
-                            <div id="kotlin_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" height="40px" width="40px"/>
+                            <div class="tech_group">
+                                <h4 class="tech_group-label">Frameworks</h4>
+                                <ul class="tech_grid">
+                                    <li><a class="tech" href="https://flutter.dev/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/flutter/flutter-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Flutter</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://dotnet.microsoft.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/dotnetcore/dotnetcore-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">.NET</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://react.dev/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/react/react-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">React</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://nextjs.org/" target="_blank" rel="noopener">
+                                        <span class="tech_icon tech_icon-adaptive"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/nextjs/nextjs-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Next.js</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://nestjs.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/nestjs/nestjs-plain.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">NestJS</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://tailwindcss.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/tailwindcss/tailwindcss-plain.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Tailwind CSS</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.arduino.cc/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/arduino/arduino-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Arduino</span>
+                                    </a></li>
+                                </ul>
                             </div>
-
-                            <div id="python_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40px" width="40px"/>
+                            <div class="tech_group">
+                                <h4 class="tech_group-label">Cloud &amp; Tools</h4>
+                                <ul class="tech_grid">
+                                    <li><a class="tech" href="https://azure.microsoft.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/azure/azure-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Azure</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="assets/img/bicep.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Bicep</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://aws.amazon.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon tech_icon-adaptive"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">AWS</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://firebase.google.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/firebase/firebase-plain.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Firebase</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.docker.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/docker/docker-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Docker</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.terraform.io/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/terraform/terraform-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Terraform</span>
+                                    </a></li>
+                                    <li><a class="tech" href="https://www.figma.com/" target="_blank" rel="noopener">
+                                        <span class="tech_icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/figma/figma-original.svg" alt="" width="34" height="34" loading="lazy"></span>
+                                        <span class="tech_name">Figma</span>
+                                    </a></li>
+                                </ul>
                             </div>
                         </div>
-
-                        <div class="about_info">
-                            <div id="java_logo" class="big_box">
-                                    <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40px" width="40px"/>
-                            </div>
-
-                            <div id="firebase_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="40px" width="40px"/>
-                            </div>
-
-                            <div id="studio_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" height="40px" width="40px"/>
-                            </div>
-                        </div>
-
-                        <div class="about_info">
-                            <div id="figma_logo" class="big_box">
-                                    <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" height="40px" width="40px"/>
-                            </div>
-
-                            <div id="react_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40px" width="40px"/>
-                            </div>
-
-                            <div id="javascript_logo" class="big_box">
-                                <img class="programming_logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40px" width="40px"/>
-                            </div>
-                        </div>
-
-                        <!-- <div class="about_buttons">
-                            <a download="" href="assets/sultan_rifqi_cv.pdf" class="special_button">
-                                Download CV<i class="uil uil-file button_icon"></i>
-                            </a>
-                        </div> -->
-                    </div>
+                    </article>
                 </div>
             </section>
 
             <!-- Qualification -->
-            <section class="qualification section" id="qualification">
-                <h2 class="section_title">Qualification</h2>
-                <span class="section_subtitle"></span>
+            <section class="section" id="qualification">
+                <header class="section_header reveal">
+                    <h2 class="section_title">Qualification</h2>
+                </header>
 
-                <div class="qualification_container container">
-                    <div class="qualification_tabs">
-                        <div class="qualification_button button--flex qualification_active" data-target='#education'>
-                            <i class="uil uil-graduation-cap qualification_icon"></i>
-                            Education
-                        </div>
-
-                        <div class="qualification_button button--flex" data-target='#work'>
-                            <i class="uil uil-briefcase-alt qualification_icon"></i>
-                            Experience
-                        </div>
-                    </div>
-
-                    <div class="qualification_section">
-                        <!-- Education -->
-                        <div class="qualification_content qualification_active" data-content id="education">
-                            <!-- education 1 -->
-                            <div class="education_data">
-                                <div>
-                                    <a href="https://www.ucl.ac.uk/computer-science/" target="_blank">
-                                        <h3 class="education_title">University College London</h3>
-                                    </a>
-                                    <span class="education_subtitle">MSc Software Systems Engineering</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        September 2024 - September 2025
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-                            </div>
-
-                            <!-- education 2 -->
-                            <div class="education_data">
-                                <div></div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-
-                                <div>
-                                    <a href="https://www.ucl.ac.uk/computer-science/" target="_blank">
-                                        <h3 class="education_title">University College London</h3>
-                                    </a>
-                                    <span class="education_subtitle">BSc (Hons) Computer Science with Crime & Security Engineering as Minor</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        September 2021 - June 2024
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- education 3 -->
-                            <div class="education_data">
-                                <div>
-                                    <a href="https://warwick.ac.uk/study/ifp/" target="_blank">
-                                        <h3 class="education_title">University of Warwick</h3>
-                                    </a>
-                                    <span class="education_subtitle">International Foundation Programme <br> Computer Science</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        September 2020 - July 2021
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-                            </div>
-
-                            <!-- education 4 -->
-                            <div class="education_data">
-                                <div></div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                </div>
-
-                                <div>
-                                    <a href="http://sman61jkt.sch.id/" target="_blank">
-                                        <h3 class="education_title">SMAN 61 Jakarta</h3>
-                                    </a>
-                                    <span class="education_subtitle">High School Diploma <br> Natural Sciences</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        July 2017 - July 2020
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Experirience -->
-                        <div class="qualification_content" data-content id="work">
-                            <!-- Experience 1 -->
-                            <div class="education_data">
-                                <div>
-                                    <a href="https://www.butterfly-air.com/" target="_blank">
-                                        <h3 class="education_title">Butterfly Air</h3>
-                                    </a>
-                                    <span class="education_subtitle">Mobile Application Developer</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        January 2024 - Present
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-                            </div>
-
-                            <!-- Experience 2 -->
-                            <div class="education_data">
-                                <div></div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-
-                                <div>
-                                    <a href="https://www.butterfly-air.com/" target="_blank">
-                                        <h3 class="education_title">Butterfly Air</h3>
-                                    </a>
-                                    <span class="education_subtitle">Mobile Application Developer Intern</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        July 2023 - September 2023
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Experience 3 -->
-                            <div class="education_data">
-                                <div>
-                                    <h3 class="education_title">Valley</h3>
-                                    <span class="education_subtitle">Mobile Application Developer</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        December 2022 - September 2023
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-                            </div>
-
-                            <!-- Experience 4 -->
-                            <div class="education_data">
-                                <div></div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                    <span class="education_line"></span>
-                                </div>
-
-                                <div>
-                                    <a href="https://careers.jpmorgan.com/in/en/students/programs/code-for-good" target="_blank">
-                                        <h3 class="education_title">Code for Good</h3>
-                                    </a>
-                                    <span class="education_subtitle">Hackathon by JPMorgan Chase & Co.</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        28 October 2022 - 29 October 2022
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Experience 5 -->
-                            <div class="education_data">
-                                <div>
-                                    <a href="https://hack-at-ice-2022.devpost.com/" target="_blank">
-                                        <h3 class="education_title">Hack-at-ICE</h3>
-                                    </a>
-                                    <span class="education_subtitle">Hackathon by Young Indonesian Professionals' Association (YIPA) - UK</span>
-                                    <div class="education_calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        1 October 2022 - 2 October 2022
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span class="education_rounder"></span>
-                                </div>
-                        </div>
-                    </div>
+                <div class="segmented glass reveal" role="tablist" aria-label="Qualification type" id="qualification-tabs">
+                    <span class="segmented_thumb" aria-hidden="true"></span>
+                    <button class="segmented_option is-active" role="tab" aria-selected="true" aria-controls="education" id="tab-education" type="button">
+                        <i class="uil uil-graduation-cap"></i> Education
+                    </button>
+                    <button class="segmented_option" role="tab" aria-selected="false" aria-controls="work" id="tab-work" type="button" tabindex="-1">
+                        <i class="uil uil-briefcase-alt"></i> Experience
+                    </button>
                 </div>
+
+                <!-- Education -->
+                <ol class="timeline is-active" role="tabpanel" id="education" aria-labelledby="tab-education">
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> September 2024 - September 2025</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.ucl.ac.uk/computer-science/" target="_blank" rel="noopener">University College London <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">MSc Software Systems Engineering</p>
+                        <dl class="timeline_details">
+                            <div><dt>Grade</dt><dd>Distinction</dd></div>
+                            <div><dt>Dissertation</dt><dd>
+                                Modelling Software Delivery and Developer Experience with Bayesian Networks
+                                <span class="timeline_note">Acknowledged as a contributor in the <a class="timeline_link" href="https://arxiv.org/abs/2603.29929" target="_blank" rel="noopener">BayesInsights paper<i class="uil uil-arrow-up-right"></i></a> (FSE-Industry 2026)</span>
+                            </dd></div>
+                        </dl>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> September 2021 - June 2024</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.ucl.ac.uk/computer-science/" target="_blank" rel="noopener">University College London <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">BSc (Hons) Computer Science with Crime &amp; Security Engineering as Minor</p>
+                        <dl class="timeline_details">
+                            <div><dt>Grade</dt><dd>First Class Honours</dd></div>
+                            <div><dt>Dissertation</dt><dd>Improving Android App Performance using Genetic Improvement</dd></div>
+                        </dl>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> September 2020 - July 2021</span>
+                        <h3 class="timeline_title">
+                            <a href="https://warwick.ac.uk/study/ifp/" target="_blank" rel="noopener">University of Warwick <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">International Foundation Programme, Computer Science</p>
+                        <dl class="timeline_details">
+                            <div><dt>Grade</dt><dd>93%</dd></div>
+                        </dl>
+                    </li>
+                </ol>
+
+                <!-- Experience -->
+                <ol class="timeline" role="tabpanel" id="work" aria-labelledby="tab-work" hidden>
+                    <li class="timeline_item glass" data-current>
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> January 2024 - Present</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.butterfly-air.com/" target="_blank" rel="noopener">Butterfly Air <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">Software Engineer</p>
+                        <dl class="timeline_details">
+                            <div><dt>Full-time</dt><dd>October 2025 - Present</dd></div>
+                            <div><dt>Part-time</dt><dd>January 2024 - September 2025</dd></div>
+                        </dl>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> June 2025 - September 2025</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.bloomberg.com/company/" target="_blank" rel="noopener">Bloomberg <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">Software Engineer · Contract</p>
+                        <span class="timeline_note">Part of MSc Software Systems Engineering at UCL</span>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> May 2025 - July 2025</span>
+                        <h3 class="timeline_title">Indonesian Scholars International Convention</h3>
+                        <p class="timeline_subtitle">Head of Information Technology · Volunteering</p>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> July 2023 - September 2023</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.butterfly-air.com/" target="_blank" rel="noopener">Butterfly Air <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">Mobile Application Developer Intern</p>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> December 2022 - September 2023</span>
+                        <h3 class="timeline_title">Valley</h3>
+                        <p class="timeline_subtitle">Mobile Application Developer</p>
+                    </li>
+                    <li class="timeline_item glass">
+                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> November 2022 - March 2023</span>
+                        <h3 class="timeline_title">
+                            <a href="https://www.england.nhs.uk/" target="_blank" rel="noopener">NHS England <i class="uil uil-arrow-up-right"></i></a>
+                        </h3>
+                        <p class="timeline_subtitle">Software Developer · Contract</p>
+                        <span class="timeline_note">Part of BSc Computer Science at UCL</span>
+                    </li>
+                </ol>
             </section>
 
-
             <!-- Projects -->
-            <section class="projects section" id="projects">
-                <h2 class="section_title">Projects</h2>
-                <span class="section_subtitle">(swipe or press left/right to see other projects)</span>
+            <section class="section section-wide" id="projects">
+                <header class="section_header reveal">
+                    <h2 class="section_title">Projects</h2>
+                    <p class="section_subtitle">Swipe, scroll or use the arrows to see other projects</p>
+                </header>
 
-                <div class="projects_container container swiper-container">
-                    <div class="swiper-wrapper">
+                <div class="carousel reveal">
+                    <div class="carousel_track" id="project-track" tabindex="0" aria-label="Projects">
+
                         <!-- Projects 1 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/cfg.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">Web Platform for DeafBlind UK
-                                    <a href="https://github.com/blue4sky/DeafblindUK-Web-Platform">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://docs.google.com/presentation/d/1xoibK9plW_rZfoevkvh34sIaN2hBtYd-RIH4YTo7RDw/edit?usp=sharing" target=”_blank”>
-                                        <i class="uil uil-presentation-edit project_icon"></i>
-                                    </a>
-                                </h3>
-
-                                <p class="projects_description">
-                                    Helped a non-profit organisation, Deafblind UK, by collaboratively 
-                                    developing a full-stack web application which is a platform for 
+                        <article class="project glass">
+                            <div class="project_media">
+                                <img src="assets/img/cfg.png" alt="Code for Good by JPMorgan Chase &amp; Co." loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">Web Platform for DeafBlind UK</h3>
+                                <p class="project_description">
+                                    Helped a non-profit organisation, Deafblind UK, by collaboratively
+                                    developing a full-stack web application which is a platform for
                                     deaf and blind people to connect, collaborate, and learn.
-                                    Features include integrated Google SSO authentication, image magnification 
+                                    Features include integrated Google SSO authentication, image magnification
                                     on mouse hover, text-to-speech and high contrast mode for accessibility.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>HTML</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>CSS</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>JavaScript</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Flask</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Python</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Amazon EC2</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>MySQL</a>
+                                <ul class="chips">
+                                    <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Flask</li><li>Python</li><li>Amazon EC2</li><li>MySQL</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/DeafblindUK-Web-Platform" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- Projects 2 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/serv.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">SERV
-                                    <a href="https://github.com/blue4sky/serv">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://www.canva.com/design/DAFNybGitvo/gTulfqs6UDq0odxusRl62w/view?utm_content=DAFNybGitvo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target=”_blank”>
-                                        <i class="uil uil-presentation-edit project_icon"></i>
-                                    </a>
-                                </h3>
-
-                                <p class="projects_description">
-                                    Finalist in the Hackathon organised by the 
-                                    Young Indonesian Professionals' Association in the UK
-                                    Collaboratively developed a full-stack website application called "Serv" 
-                                    to bridge the connection between service providers and vendors to MSMEs in Indonesia
-                                    Designed a user-friendly website by creating the wireframe of the website with Figma 
+                        <article class="project glass">
+                            <div class="project_media project_media-contain" style="--media-bg: #3d0b5c">
+                                <img src="assets/img/serv.png" alt="Hack-at-ICE 2022 banner" loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">SERV</h3>
+                                <p class="project_description">
+                                    Finalist in the Hackathon organised by the
+                                    Young Indonesian Professionals' Association in the UK.
+                                    Collaboratively developed a full-stack website application called "Serv"
+                                    to bridge the connection between service providers and vendors to MSMEs in Indonesia.
+                                    Designed a user-friendly website by creating the wireframe of the website with Figma
                                     to make the development smoother.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>Next.js</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Tailwind CSS</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Figma</a>
+                                <ul class="chips">
+                                    <li>Next.js</li><li>Tailwind CSS</li><li>Figma</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/serv" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- Projects 3 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/quiz_app_preview.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">Educational Quiz App
-                                    <a href="https://github.com/blue4sky/EducationApp">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://www.mediafire.com/file/783wia3y8a0lpf8/Quiz_App.apk/file" target=”_blank”>
-                                        <i class="uil uil-download-alt project_icon"></i>
-                                    </a>
-                                </h3>
-
-                                <p class="projects_description">
-                                    Independently built an education app using MVC Architecture to support Indonesian high school students preparing for univeristy entrance exams. 
-                                    There are many features on this app that are a built-in forum with sending text and photo functionality using Cloud Firestore, 
-                                    full-stack development with Flutter, push notifications for giving the latest information to students using 
+                        <article class="project glass">
+                            <div class="project_media">
+                                <img src="assets/img/quiz_app_preview.png" alt="Screens from the Educational Quiz App" loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">Educational Quiz App</h3>
+                                <p class="project_description">
+                                    Independently built an education app using MVC Architecture to support Indonesian high school students preparing for university entrance exams.
+                                    There are many features on this app that are a built-in forum with sending text and photo functionality using Cloud Firestore,
+                                    full-stack development with Flutter, push notifications for giving the latest information to students using
                                     Firebase Cloud Messaging and integrated SSO Authentication.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>Flutter</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Firebase</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Postman API</a>
+                                <ul class="chips">
+                                    <li>Flutter</li><li>Firebase</li><li>Postman API</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/EducationApp" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- Projects 4 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/ig_clone_preview.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">Instagram Clone
-                                    <a href="https://github.com/blue4sky/InstagramClone">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://www.mediafire.com/file/761rt5b373n936v/Instagram_Clone.apk/file" target=”_blank”>
-                                        <i class="uil uil-download-alt project_icon"></i>
-                                    </a>
-                                </h3>
-
-                                <p class="projects_description">
+                        <article class="project glass">
+                            <div class="project_media">
+                                <img src="assets/img/ig_clone_preview.png" alt="Screens from the Instagram Clone app" loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">Instagram Clone</h3>
+                                <p class="project_description">
                                     An Instagram-like app which implements some features of the original one.
                                     This app allows users to post a photo with a caption, and it will appear on the Home Page.
-                                    Every user can see their posts on Profile Page and also other users' posts on the Home Page. 
-                                    Each post will be stored in the Cloud Firestore. 
+                                    Every user can see their posts on Profile Page and also other users' posts on the Home Page.
+                                    Each post will be stored in the Cloud Firestore.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>Kotlin</a>
+                                <ul class="chips">
+                                    <li>Kotlin</li><li>XML</li><li>Android Studio</li><li>Firebase</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/InstagramClone" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
-                                <div class="used_tools">
-                                    <a>XML</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Android Studio</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Firebase</a>
-                                </div>
-
                             </div>
-                        </div>
+                        </article>
 
                         <!-- Projects 5 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/snapchat_clone_preview.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">Snapchat Clone
-                                    <a href="https://github.com/blue4sky/snapchatclone">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://www.mediafire.com/file/6hpr92zhiyg42b0/Snapchat_Clone.apk/file" target=”_blank”>
-                                        <i class="uil uil-download-alt project_icon"></i>
-                                    </a>
-                                </h3>
-                                
-                                <p class="projects_description">
+                        <article class="project glass">
+                            <div class="project_media">
+                                <img src="assets/img/snapchat_clone_preview.png" alt="Screens from the Snapchat Clone app" loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">Snapchat Clone</h3>
+                                <p class="project_description">
                                     A Snapchat-like app which implements the simple features of the original one.
                                     This app allows users to send a text with a photo to another user.
                                     The message will be stored in the Realtime Database.
                                     Another feature is the message will be deleted after the user sees it.
                                     Firebase Authentication is used to store the user's username and password.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>Kotlin</a>
+                                <ul class="chips">
+                                    <li>Kotlin</li><li>XML</li><li>Android Studio</li><li>Firebase</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/snapchatclone" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
-                                <div class="used_tools">
-                                    <a>XML</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Android Studio</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Firebase</a>
-                                </div>
-
                             </div>
-                        </div>
+                        </article>
 
                         <!-- Projects 6 -->
-                        <div class="projects_content grid swiper-slide">
-                            <img src="assets/img/simple_notes_app_preview.png" alt="" class="projects_img">
-
-                            <div class="projects_data">
-                                <h3 class="projects_title">Simple Notes App
-                                    <a href="https://github.com/blue4sky/SimpleNotesApp">
-                                        <i class="uil uil-github project_icon"></i>
-                                    </a>
-                                    <a href="https://www.mediafire.com/file/ztsa87xzpt99pco/Simple_Notes_App.apk/file" target=”_blank”>
-                                        <i class="uil uil-download-alt project_icon"></i>
-                                    </a>
-                                </h3>
-
-                                <p class="projects_description">
+                        <article class="project glass">
+                            <div class="project_media">
+                                <img src="assets/img/simple_notes_app_preview.png" alt="Screens from the Simple Notes App" loading="lazy">
+                            </div>
+                            <div class="project_body">
+                                <h3 class="project_title">Simple Notes App</h3>
+                                <p class="project_description">
                                     A simple notes app that implements CRUD Operations.
                                     This app allows users to create a new note with only plain text in it.
                                     The note will automatically be saved to local storage (using SharedPreferences) so that the user can edit it later.
                                     The delete feature is also available if the user wants to delete their note.
                                 </p>
-
-                                <div class="used_tools">
-                                    <a>Java</a>
+                                <ul class="chips">
+                                    <li>Java</li><li>XML</li><li>Android Studio</li>
+                                </ul>
+                                <div class="project_links">
+                                    <a href="https://github.com/blue4sky/SimpleNotesApp" target="_blank" rel="noopener" class="pill glass-button"><i class="uil uil-github"></i> GitHub</a>
                                 </div>
-                                <div class="used_tools">
-                                    <a>XML</a>
-                                </div>
-                                <div class="used_tools">
-                                    <a>Android Studio</a>
-                                </div>
-
                             </div>
-                        </div>
+                        </article>
+                    </div>
+
+                    <div class="carousel_controls">
+                        <button class="carousel_button glass glass-button refract" id="project-prev" type="button" aria-label="Previous project">
+                            <i class="uil uil-angle-left"></i>
+                        </button>
+                        <div class="carousel_dots glass" id="project-dots" aria-label="Project position"></div>
+                        <button class="carousel_button glass glass-button refract" id="project-next" type="button" aria-label="Next project">
+                            <i class="uil uil-angle-right"></i>
+                        </button>
                     </div>
                 </div>
             </section>
-        
+
             <!-- Contact Me -->
-            <section class="contact section" id="contact">
-                <h2 class="section_title">Get In Touch</h2>
-                <span class="contact_subtitle">Feel free to contact me by email!</span>
+            <section class="section" id="contact">
+                <header class="section_header reveal">
+                    <h2 class="section_title">Get In Touch</h2>
+                    <p class="section_subtitle">Feel free to contact me by email!</p>
+                </header>
 
-                <div class="contact_container container grid">
-                    <form action="https://formsubmit.co/f4eef5958d261124fb0626ecaf816cfa" method="POST" class="contact_form grid">
-                        <div class="contact_inputs grid">
-                            <div class="contact_content">
-                                <label for="name" class="contact_label">Name</label>
-                                <input type="text" name="Name" class="contact_input" required>
-                            </div>
-                            <div class="contact_content">
-                                <label for="email" class="contact_label">Email</label>
-                                <input type="email" name="Email" class="contact_input" required>
-                            </div>
-                        </div>
-                        <div class="contact_content">
-                            <label for="title" class="contact_label">Title</label>
-                            <input type="text" name="Title" class="contact_input" required>
-                        </div>
-                        <div class="contact_content">
-                            <label for="message" class="contact_label">Message</label>
-                            <textarea name="Message" id="" cols="0" rows="7" class="contact_input" required></textarea>
-                        </div>
+                <div class="contact_card glass reveal">
 
-                        <div>
-                            <button type="submit" class="special_button">
-                                Send Message
-                                <i class="uil uil-message button_icon"></i>
-                            </button>
+                    <form action="https://formsubmit.co/f4eef5958d261124fb0626ecaf816cfa" method="POST" class="contact_form">
+                        <div class="field_row">
+                            <label class="field">
+                                <span class="field_label">Name</span>
+                                <input type="text" name="Name" autocomplete="name" required>
+                            </label>
+                            <label class="field">
+                                <span class="field_label">Email</span>
+                                <input type="email" name="Email" autocomplete="email" required>
+                            </label>
                         </div>
+                        <label class="field">
+                            <span class="field_label">Title</span>
+                            <input type="text" name="Title" required>
+                        </label>
+                        <label class="field">
+                            <span class="field_label">Message</span>
+                            <textarea name="Message" rows="6" required></textarea>
+                        </label>
+                        <button type="submit" class="button button-primary">
+                            Send Message <i class="uil uil-message"></i>
+                        </button>
                     </form>
                 </div>
             </section>
@@ -672,39 +554,21 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer_bg">
-                <div class="footer_container container grid">
-
-                    <div class="footer_socials">
-                        <a href="https://www.linkedin.com/in/sultan-rifqi/" target="_blank" class="footer_social">
-                            <i class="uil uil-linkedin footer_icon"></i>
-                        </a>
-
-                        <a href="mailto:sultanrifqi.web@gmail.com" target="_blank" class="footer_social">
-                            <i class="uil uil-envelope-alt footer_icon"></i>
-                        </a>
-
-                        <a href="https://github.com/blue4sky" target="_blank" class="footer_social">
-                            <i class="uil uil-github-alt footer_icon"></i>
-                        </a>
-
-                        <a href="https://www.instagram.com/sultanrifqi4/" target="_blank" class="footer_social">
-                            <i class="uil uil-instagram footer_icon"></i>
-                        </a>
-                    </div>
+            <div class="footer_bar glass">
+                <div class="socials socials-small">
+                    <a href="https://www.linkedin.com/in/sultan-rifqi/" target="_blank" rel="noopener" class="social glass-button" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+                    <a href="mailto:sultanrifqi.web@gmail.com" class="social glass-button" aria-label="Email"><i class="uil uil-envelope-alt"></i></a>
+                    <a href="https://github.com/blue4sky" target="_blank" rel="noopener" class="social glass-button" aria-label="GitHub"><i class="uil uil-github-alt"></i></a>
+                    <a href="https://www.instagram.com/sultanrifqi4/" target="_blank" rel="noopener" class="social glass-button" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
                 </div>
-
-                <p class="footer_copyright">&#169; 2021 Sultan Rifqi</p>
+                <p class="footer_copyright">&#169; 2021&ndash;<span id="year">2026</span> Sultan Rifqi</p>
             </div>
         </footer>
-        
-        <!-- Scroll Top -->
-        <a href="#" class="scrollup" id="scroll-up">
-            <i class="uil uil-arrow-up scrollup_icon"></i>
-        </a>
 
-        <!-- Swiper JS -->
-        <script src="js/swiper-bundle.min.js"></script>
+        <!-- Scroll Top -->
+        <a href="#home" class="scrollup glass glass-button refract" id="scroll-up" aria-label="Back to top">
+            <i class="uil uil-arrow-up"></i>
+        </a>
 
         <!-- Main JS -->
         <script src="js/main.js"></script>

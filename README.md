@@ -1,3 +1,3 @@
-#### The second version of my personal website 🌐
+#### The third version of my personal website 🌐
 
-Created using HTML, CSS, and JavaScript.
+A single-page portfolio with an Apple "liquid glass" inspired design, built with plain HTML, CSS, and JavaScript.
