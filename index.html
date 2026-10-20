@@ -7,11 +7,16 @@
         <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
-        <!-- Thumbnail -->
+        <!-- Link preview (LinkedIn, WhatsApp, Slack, X...) -->
+        <meta property="og:type" content="website">
         <meta property="og:title" content="Sultan Rifqi">
         <meta property="og:description" content="Software Engineer">
-        <meta property="og:image" content="https://blue4sky.github.io/mylogo.png">
         <meta property="og:url" content="https://blue4sky.github.io/">
+        <meta property="og:image" content="https://blue4sky.github.io/assets/img/og-image.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="Sultan Rifqi, Software Engineer">
+        <meta name="twitter:card" content="summary_large_image">
 
         <title>Sultan Rifqi</title>
 
@@ -290,7 +295,7 @@
                         <h3 class="timeline_title">
                             <a href="https://www.ucl.ac.uk/computer-science/" target="_blank" rel="noopener">University College London <i class="uil uil-arrow-up-right"></i></a>
                         </h3>
-                        <p class="timeline_subtitle">BSc (Hons) Computer Science with Crime &amp; Security Engineering as Minor</p>
+                        <p class="timeline_subtitle">BSc (Hons) Computer Science</p>
                         <dl class="timeline_details">
                             <div><dt>Grade</dt><dd>First Class Honours</dd></div>
                             <div><dt>Dissertation</dt><dd>Improving Android App Performance using Genetic Improvement</dd></div>
@@ -342,11 +347,6 @@
                         <p class="timeline_subtitle">Mobile Application Developer Intern</p>
                     </li>
                     <li class="timeline_item glass">
-                        <span class="timeline_date"><i class="uil uil-calendar-alt"></i> December 2022 - September 2023</span>
-                        <h3 class="timeline_title">Valley</h3>
-                        <p class="timeline_subtitle">Mobile Application Developer</p>
-                    </li>
-                    <li class="timeline_item glass">
                         <span class="timeline_date"><i class="uil uil-calendar-alt"></i> November 2022 - March 2023</span>
                         <h3 class="timeline_title">
                             <a href="https://www.england.nhs.uk/" target="_blank" rel="noopener">NHS England <i class="uil uil-arrow-up-right"></i></a>
@@ -392,7 +392,7 @@
                         <!-- Projects 1 -->
                         <article class="project glass">
                             <div class="project_media">
-                                <img src="assets/img/cfg.png" alt="Code for Good by JPMorgan Chase &amp; Co." loading="lazy">
+                                <img src="assets/img/cfg.jpg" alt="Code for Good by JPMorgan Chase &amp; Co." loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">Web Platform for DeafBlind UK</h3>
@@ -415,7 +415,7 @@
                         <!-- Projects 2 -->
                         <article class="project glass">
                             <div class="project_media project_media-contain" style="--media-bg: #3d0b5c">
-                                <img src="assets/img/serv.png" alt="Hack-at-ICE 2022 banner" loading="lazy">
+                                <img src="assets/img/serv.jpg" alt="Hack-at-ICE 2022 banner" loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">SERV</h3>
@@ -439,7 +439,7 @@
                         <!-- Projects 3 -->
                         <article class="project glass">
                             <div class="project_media">
-                                <img src="assets/img/quiz_app_preview.png" alt="Screens from the Educational Quiz App" loading="lazy">
+                                <img src="assets/img/quiz_app_preview.jpg" alt="Screens from the Educational Quiz App" loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">Educational Quiz App</h3>
@@ -461,7 +461,7 @@
                         <!-- Projects 4 -->
                         <article class="project glass">
                             <div class="project_media">
-                                <img src="assets/img/ig_clone_preview.png" alt="Screens from the Instagram Clone app" loading="lazy">
+                                <img src="assets/img/ig_clone_preview.jpg" alt="Screens from the Instagram Clone app" loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">Instagram Clone</h3>
@@ -483,7 +483,7 @@
                         <!-- Projects 5 -->
                         <article class="project glass">
                             <div class="project_media">
-                                <img src="assets/img/snapchat_clone_preview.png" alt="Screens from the Snapchat Clone app" loading="lazy">
+                                <img src="assets/img/snapchat_clone_preview.jpg" alt="Screens from the Snapchat Clone app" loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">Snapchat Clone</h3>
@@ -506,7 +506,7 @@
                         <!-- Projects 6 -->
                         <article class="project glass">
                             <div class="project_media">
-                                <img src="assets/img/simple_notes_app_preview.png" alt="Screens from the Simple Notes App" loading="lazy">
+                                <img src="assets/img/simple_notes_app_preview.jpg" alt="Screens from the Simple Notes App" loading="lazy">
                             </div>
                             <div class="project_body">
                                 <h3 class="project_title">Simple Notes App</h3>
@@ -547,7 +547,12 @@
 
                 <div class="contact_card glass reveal">
 
-                    <form action="https://formsubmit.co/f4eef5958d261124fb0626ecaf816cfa" method="POST" class="contact_form">
+                    <form action="https://formsubmit.co/f4eef5958d261124fb0626ecaf816cfa" method="POST" class="contact_form" id="contact-form">
+                        <input type="hidden" name="_subject" value="Portfolio: new message">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://blue4sky.github.io/#contact">
+                        <!-- Honeypot: hidden from people, bots that fill it in get dropped -->
+                        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="field_row">
                             <label class="field">
                                 <span class="field_label">Name</span>
@@ -566,10 +571,22 @@
                             <span class="field_label">Message</span>
                             <textarea name="Message" rows="6" required></textarea>
                         </label>
-                        <button type="submit" class="button button-primary">
-                            Send Message <i class="uil uil-message"></i>
-                        </button>
+                        <div class="contact_actions">
+                            <button type="submit" class="button button-primary">
+                                <span class="button_label">Send Message</span> <i class="uil uil-message"></i>
+                            </button>
+                            <p class="contact_status" id="contact-status" role="status" aria-live="polite"></p>
+                        </div>
                     </form>
+
+                    <div class="contact_success" id="contact-success" hidden>
+                        <span class="contact_success-icon"><i class="uil uil-check"></i></span>
+                        <h3 class="contact_success-title">Message sent</h3>
+                        <p>Thanks for reaching out, I'll get back to you soon.</p>
+                        <button type="button" class="button button-glass glass-button" id="contact-again">
+                            Send another message
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>

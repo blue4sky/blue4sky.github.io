@@ -336,5 +336,49 @@ if (window.matchMedia('(hover: hover)').matches) {
     }, { passive: true })
 }
 
+/*==================== CONTACT FORM ====================*/
+// Send through FormSubmit's AJAX endpoint so visitors stay on the page.
+// Without JS the form still posts normally and FormSubmit redirects back via _next.
+const contactForm = document.getElementById('contact-form')
+const contactSuccess = document.getElementById('contact-success')
+const contactStatus = document.getElementById('contact-status')
+const contactButton = contactForm.querySelector('button[type="submit"]')
+const contactLabel = contactButton.querySelector('.button_label')
+
+contactForm.addEventListener('submit', async e => {
+    e.preventDefault()
+    const data = Object.fromEntries(new FormData(contactForm))
+    data._subject = `Portfolio: ${data.Title}`
+
+    contactButton.disabled = true
+    contactLabel.textContent = 'Sending…'
+    contactStatus.textContent = ''
+
+    try {
+        const response = await fetch(contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(data)
+        })
+        const result = await response.json().catch(() => ({}))
+        if (!response.ok || String(result.success) !== 'true') throw new Error(result.message)
+
+        contactForm.reset()
+        contactForm.hidden = true
+        contactSuccess.hidden = false
+    } catch {
+        contactStatus.textContent = "Sorry, that didn't go through. Please try again, or email me at sultanrifqi.web@gmail.com."
+    } finally {
+        contactButton.disabled = false
+        contactLabel.textContent = 'Send Message'
+    }
+})
+
+document.getElementById('contact-again').addEventListener('click', () => {
+    contactSuccess.hidden = true
+    contactForm.hidden = false
+    contactForm.querySelector('input[name="Name"]').focus()
+})
+
 /*==================== FOOTER YEAR ====================*/
 document.getElementById('year').textContent = new Date().getFullYear()

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta name="robots" content="noindex">
+        <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+        <title>Page not found | Sultan Rifqi</title>
+
+        <!-- Apply saved theme before first paint -->
+        <script>
+            (function () {
+                try {
+                    var theme = localStorage.getItem('theme');
+                    if (theme) document.documentElement.dataset.theme = theme;
+                } catch (e) {}
+            })();
+        </script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css">
+
+        <!-- Root paths, because GitHub Pages serves this page for missing URLs at any depth -->
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="icon" type="image/png" href="/mylogo.png">
+    </head>
+
+    <body>
+        <div class="ambient" aria-hidden="true"></div>
+
+        <main>
+            <section class="home">
+                <div class="home_card glass">
+                    <p class="home_subtitle">Error 404</p>
+                    <h1 class="home_title">Page not found</h1>
+                    <p class="home_job">The page you're looking for doesn't exist or has moved.</p>
+
+                    <div class="home_actions">
+                        <a href="/" class="button button-primary">
+                            <i class="uil uil-arrow-left"></i> Back to home
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

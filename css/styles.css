@@ -514,7 +514,10 @@ main {
 }
 
 .home_title {
-    margin-block: .1rem .5rem;
+    /* The gradient only paints inside the box, so pad it to cover descenders (g, q)
+       and pull the following content back up by the same amount */
+    margin-block: .1rem calc(.5rem - .15em);
+    padding-bottom: .15em;
     font-size: clamp(2.5rem, 7.6vw, 4.1rem);
     font-weight: 800;
     line-height: 1.02;
@@ -1235,9 +1238,71 @@ main {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, .06), 0 0 0 3px color-mix(in srgb, var(--text) 18%, transparent);
 }
 
-.contact_form .button {
-    justify-self: start;
+.contact_actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem 1rem;
     margin-top: .25rem;
+}
+
+.button:disabled {
+    opacity: .6;
+    cursor: progress;
+    transform: none;
+}
+
+.contact_status {
+    font-size: .9rem;
+    color: var(--text-2);
+}
+
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.contact_success {
+    display: grid;
+    justify-items: center;
+    gap: .5rem;
+    padding: clamp(24px, 6vw, 48px) 8px;
+    text-align: center;
+}
+
+.contact_success-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: .5rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--accent-ink);
+    background: var(--accent);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, .35), 0 10px 24px -10px rgba(0, 0, 0, .45);
+    animation: pop .6s var(--spring) both;
+}
+
+.contact_success-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+
+.contact_success p {
+    color: var(--text-2);
+}
+
+.contact_success .button {
+    margin-top: 1rem;
+}
+
+@keyframes pop {
+    from { opacity: 0; scale: .4; }
 }
 
 /*==================== FOOTER ====================*/
@@ -1365,8 +1430,8 @@ main {
         grid-template-columns: 1fr;
     }
 
-    .contact_form .button {
-        justify-self: stretch;
+    .contact_actions .button {
+        flex: 1;
     }
 
     .footer {
